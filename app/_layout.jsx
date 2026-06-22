@@ -1,5 +1,13 @@
-import { Stack } from "expo-router";
+import { Stack } from 'expo-router';
+import { ThemeProvider } from './(context)/theme'; // lowercase path
 
 export default function RootLayout() {
-  return <Stack />;
+  return (
+    <ThemeProvider>
+      <Stack screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="(tabs)" />
+        <Stack.Screen name="(screens)" />
+      </Stack>
+    </ThemeProvider>
+  );
 }
