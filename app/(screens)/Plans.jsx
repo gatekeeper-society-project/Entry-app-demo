@@ -9,24 +9,35 @@ export default function Plans() {
 
   const currentPlanName = selectedPlan || 'Premium Plan';
 
+  // Admin Meta Configuration Information
+  const adminName = "Joel Heinz";
+  const adminEmail = "joel.heinz@example.com";
+
   const goHomeWithSubscription = () => {
     setActivePlan(currentPlanName);
     router.replace('/');
   };
 
   const handleCheckout = () => {
+    // Custom template structure detailing subscription results
+    const responseDetails = `You have subscribed to the ${currentPlanName}.\n\nYou will continue as admin: ${adminName}.\n\nPlease check your mail ID (${adminEmail}) for further details and access.`;
+
     if (Platform.OS === 'web') {
-      window.alert('Processing Checkout. Redirecting home...');
+      window.alert(`Subscription Successful 🎉\n\n${responseDetails}`);
       goHomeWithSubscription();
       return;
     }
 
-    Alert.alert('Processing Checkout', 'Redirecting to payment gateway...', [
-      {
-        text: 'OK',
-        onPress: goHomeWithSubscription
-      }
-    ]);
+    Alert.alert(
+      'Subscription Successful 🎉', 
+      responseDetails, 
+      [
+        {
+          text: 'Done',
+          onPress: goHomeWithSubscription
+        }
+      ]
+    );
   };
 
   return (

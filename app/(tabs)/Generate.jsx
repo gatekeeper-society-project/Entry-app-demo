@@ -13,7 +13,6 @@ import {
 } from 'react-native';
 import { useTheme } from '../(context)/Theme';
 
-
 export default function Generate() {
   // Pull centralized variables from global state context
   const { colors, activePlan, qrCount, setQrCount } = useTheme();
@@ -44,7 +43,7 @@ export default function Generate() {
 
     // Rule 2: If no subscription is on and user reached 3 codes limit, block & redirect
     if (qrCount >= 3) {
-      const alertMsg = "3 free generations over. Please subscribe to standard or premium options to continue unlimited generations.";
+      const alertMsg = "3 free generations over. Please subscribe to basic,standard or premium options to continue unlimited generations.";
       
       if (Platform.OS === 'web') {
         alert(alertMsg);

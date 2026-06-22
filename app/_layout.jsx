@@ -1,5 +1,5 @@
 import { Stack } from 'expo-router';
-import { ThemeProvider } from './(context)/theme'; // lowercase path
+import { ThemeProvider } from './(context)/Theme'; // lowercase path
 
 export default function RootLayout() {
   return (

@@ -116,7 +116,7 @@ export default function Settings() {
           <TouchableOpacity 
             style={styles.optionItemRowLink} 
             activeOpacity={0.7}
-            onPress={() => router.push('/(screens)/help')} // Seamless cross-directory structural routing navigation target
+            onPress={() => router.push('/(screens)/Help')} // Seamless cross-directory structural routing navigation target
           >
             <View style={styles.optionItemRowInnerLeft}>
               <View style={[styles.iconCircleWrapper, { backgroundColor: '#38A169' }]}>
@@ -130,7 +130,7 @@ export default function Settings() {
           <TouchableOpacity 
             style={styles.optionItemRowLink} 
             activeOpacity={0.7}
-            onPress={() => router.push('/(screens)/terms')} // Now fully assigned to go to terms.jsx
+            onPress={() => router.push('/(screens)/Terms')} // Now fully assigned to go to terms.jsx
           >
             <View style={styles.optionItemRowInnerLeft}>
               <View style={[styles.iconCircleWrapper, { backgroundColor: '#4299E1' }]}>
