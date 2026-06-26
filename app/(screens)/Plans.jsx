@@ -52,9 +52,9 @@ export default function Plans() {
         <View style={styles.headerSpacer} />
       </View>
 
-      {/* Scrollable Screen Content */}
+      {/* Scrollable Screen Content */} 
       <ScrollView 
-        contentContainerStyle={styles.scrollContent} 
+        contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
       >
         <View style={styles.summaryCard}>

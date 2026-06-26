@@ -1,5 +1,5 @@
 import { Ionicons } from '@expo/vector-icons';
-import { router, useLocalSearchParams } from 'expo-router'; // Enhanced Expo Router for web/mobile synchronization
+import { router, useLocalSearchParams } from 'expo-router'; 
 import { useState, useEffect } from 'react';
 import { Image, SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useTheme } from '../(context)/Theme'; // Adjust path depending on project layout
@@ -13,19 +13,16 @@ const CLOSE_FRIENDS_DATA = [
 ];
 
 export default function Home() {
-  // Pull centralized colors from global state context
   const { colors, activePlan, setActivePlan } = useTheme();
   const [showAlternativePlans, setShowAlternativePlans] = useState(false);
   const params = useLocalSearchParams();
 
-  // Web Synchronization Fallback: Catches URL search query parameters when routed on browsers
   useEffect(() => {
     if (params?.activePlan) {
       setActivePlan(params.activePlan);
     }
   }, [params?.activePlan]);
   
-  // Handles routing out of the (tabs) context into your custom (screens) bundle folder
   const handlePlanPress = (planName) => {
     router.push({
       pathname: '/(screens)/Plans',
@@ -47,7 +44,6 @@ export default function Home() {
         <View style={[styles.closeFriendsCard, { backgroundColor: colors.cardBackground, borderColor: colors.cardBorder }]}>
           <Text style={[styles.cardTitleText, { color: colors.secondaryText }]}>Close Friends</Text>
           
-          {/* Horizontal list displaying friend images and first names */}
           <ScrollView 
             horizontal 
             showsHorizontalScrollIndicator={false} 
@@ -68,7 +64,6 @@ export default function Home() {
 
           {/* Dual Action Control Area with Captions */}
           <View style={styles.actionButtonsRow}>
-            
             {/* Add Friend*/}
             <View style={styles.controlbutton}>
               <TouchableOpacity style={[styles.circleButton, styles.addButton]} activeOpacity={0.7}>
@@ -84,7 +79,6 @@ export default function Home() {
               </TouchableOpacity>
               <Text style={[styles.controlCaption, { color: colors.secondaryText }]}>REMOVE</Text>
             </View>
-
           </View>
         </View>
 
@@ -117,7 +111,7 @@ export default function Home() {
                 onPress={() => {
                   setActivePlan(null);
                   setShowAlternativePlans(false);
-                  router.setParams({ activePlan: '' }); // Clear URL parameters on Web
+                  router.setParams({ activePlan: '' }); 
                 }}
               >
                 <Text style={{ color: '#FF4D4D', fontWeight: '600', fontSize: 14 }}>Cancel Subscription</Text>
@@ -140,7 +134,7 @@ export default function Home() {
               </TouchableOpacity>
             )}
 
-            {/* Basic Plan Card (Only show if NO plan is currently active) */}
+            {/* Basic Plan Card */}
             {!activePlan && (
               <TouchableOpacity 
                 style={[styles.subscriptionCard, { backgroundColor: colors.cardBackground, borderColor: colors.isDarkTheme ? colors.cardBorder : '#E2E8F0' }]}
@@ -154,11 +148,13 @@ export default function Home() {
                   </View>
                   <Text style={[styles.planPriceText, { color: colors.primaryText }]}>₹399.99<Text style={[styles.priceDurationText, { color: colors.secondaryText }]}>/mo</Text></Text>
                 </View>
-                <Text style={[styles.planDescriptionText, { color: colors.secondaryText }]}>Access to standard custom filters & essential features.</Text>
+                <Text style={[styles.planDescriptionText, { color: colors.secondaryText }]}>
+                  Includes up to 5 Close Friends slots, 10 core style filters, standard 720p resolution, and 15 daily generation limits.
+                </Text>
               </TouchableOpacity>
             )}
 
-            {/* Standard Plan Card (Show if NO plan is active OR if current active plan is Basic) */}
+            {/* Standard Plan Card */}
             {(!activePlan || activePlan === 'Basic Plan') && (
               <TouchableOpacity 
                 style={[styles.subscriptionCard, { backgroundColor: colors.cardBackground, borderColor: colors.isDarkTheme ? colors.cardBorder : '#A5D8E2' }]}
@@ -172,11 +168,13 @@ export default function Home() {
                   </View>
                   <Text style={[styles.planPriceText, { color: colors.primaryText }]}>₹999.99<Text style={[styles.priceDurationText, { color: colors.secondaryText }]}>/mo</Text></Text>
                 </View>
-                <Text style={[styles.planDescriptionText, { color: colors.secondaryText }]}>Unlocks HD generation profiles & high-priority asset processing.</Text>
+                <Text style={[styles.planDescriptionText, { color: colors.secondaryText }]}>
+                  Upgrade to unlock 25 Close Friends slots, sharp Ultra-HD (1080p/2K) assets, text-to-filter mechanics, and 3x faster processing speed.
+                </Text>
               </TouchableOpacity>
             )}
 
-            {/* Premium Plan Card (Show if current active plan is anything EXCEPT Premium) */}
+            {/* Premium Plan Card */}
             {(activePlan !== 'Premium Plan') && (
               <TouchableOpacity 
                 style={[styles.subscriptionCard, { backgroundColor: colors.cardBackground, borderColor: colors.isDarkTheme ? colors.cardBorder : colors.tabBarActive }]}
@@ -190,7 +188,9 @@ export default function Home() {
                   </View>
                   <Text style={[styles.planPriceText, { color: colors.primaryText }]}>₹1499.99<Text style={[styles.priceDurationText, { color: colors.secondaryText }]}>/mo</Text></Text>
                 </View>
-                <Text style={[styles.planDescriptionText, { color: colors.secondaryText }]}>Ultimate priority rendering speed, unlimited generation tools & dedicated support.</Text>
+                <Text style={[styles.planDescriptionText, { color: colors.secondaryText }]}>
+                  Ultimate access: Infinite friends list segmentation, looping animated assets, instant dedicated rendering engine, and weekly early access filters.
+                </Text>
               </TouchableOpacity>
             )}
 
@@ -306,7 +306,7 @@ const styles = StyleSheet.create({
   },
   subscriptionCard: {
     width: '100%',
-    height: 136, 
+    height: 145, // Adjusted to fit the unique tier details nicely
     borderRadius: 20,
     borderWidth: 1.5,
     padding: 14,
@@ -335,8 +335,8 @@ const styles = StyleSheet.create({
     fontWeight: '400',
   },
   planDescriptionText: {
-    fontSize: 15,
-    lineHeight: 20,
+    fontSize: 14,
+    lineHeight: 19,
     marginTop: -4,
   },
   activePlanEditCard: {

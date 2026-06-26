@@ -1,5 +1,9 @@
+// =====================================================================
+// FILE PATH: app/(tabs)/Settings.jsx
+// =====================================================================
+
 import { Feather, Ionicons, MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
-import { router } from 'expo-router'; // Custom layout path transition router handler
+import { router } from 'expo-router';
 import { Image, SafeAreaView, ScrollView, StyleSheet, Switch, Text, TouchableOpacity, View } from 'react-native';
 import { useTheme } from '../(context)/Theme'; // Centralized global context hook location
 
@@ -14,6 +18,7 @@ export default function Settings() {
       <View style={[styles.screenHeaderContainer, { backgroundColor: colors.background }]}>
         <Text style={[styles.screenHeaderTitle, { color: colors.headerTitle }]}>Settings</Text>
       </View>
+      
       <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
         
         {/* Top Profile Metadata Display Identity Card */}
@@ -151,6 +156,23 @@ export default function Settings() {
                 <MaterialIcons name="phone-android" size={20} color="#FFFFFF" />
               </View>
               <Text style={[styles.optionItemLabelText, { color: colors.itemLabel }]}>App Version</Text>
+            </View>
+          </TouchableOpacity>
+
+          {/* Button Link Item #8: Sign Out Action Row Block */}
+          <TouchableOpacity 
+            style={[styles.optionItemRowLink, { marginTop: 12 }]} 
+            activeOpacity={0.7}
+            onPress={() => {
+              // Clear routing contexts and send sessions immediately back to login layout branch
+              router.replace('/(auth)/Login');
+            }}
+          >
+            <View style={styles.optionItemRowInnerLeft}>
+              <View style={[styles.iconCircleWrapper, { backgroundColor: '#FF4D4D' }]}>
+                <MaterialIcons name="logout" size={20} color="#FFFFFF" />
+              </View>
+              <Text style={[styles.optionItemLabelText, { color: '#FF4D4D', fontWeight: '600' }]}>Sign Out</Text>
             </View>
           </TouchableOpacity>
 
